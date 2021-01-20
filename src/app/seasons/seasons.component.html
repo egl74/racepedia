@@ -1,0 +1,21 @@
+<div class="mat-elevation-z8 list-table">
+  <table mat-table class="full-width-table" aria-label="Elements">
+    <ng-container matColumnDef="round">
+      <th mat-header-cell *matHeaderCellDef mat-header>Round #</th>
+      <td mat-cell *matCellDef="let row">{{row.round}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="race">
+      <th mat-header-cell *matHeaderCellDef mat-header>Event Name</th>
+      <td mat-cell *matCellDef="let row">{{row.raceName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="circuit">
+      <th mat-header-cell *matHeaderCellDef mat-header>Circuit</th>
+      <td mat-cell *matCellDef="let row">{{row.Circuit.circuitName}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
