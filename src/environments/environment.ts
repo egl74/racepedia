@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  ergastApiUrl: 'http://ergast.com/api/f1',
+  ergastApiUrl: 'https://ergast.com/api/f1',
 };
 
 /*
