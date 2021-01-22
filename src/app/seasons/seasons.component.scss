@@ -18,5 +18,14 @@ table {
 
 .year-picker {
   margin: 8px 12px;
-  width: 10%;
+}
+
+:host ::ng-deep .auto-width{
+  .mat-form-field {
+      width: auto !important;
+  }
+  .mat-select-value {
+      max-width: 100%;
+      width: auto;
+  }  
 }
