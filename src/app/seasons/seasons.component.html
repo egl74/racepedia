@@ -1,9 +1,9 @@
 <div class="title">
   <h1>Races of season</h1>
   <div class="auto-width">
-    <mat-select [value]="2020" class="year-picker">
-      <mat-option [value]="2020">
-        {{ 2020 }}
+    <mat-select [formControl]="yearControl" class="year-picker">
+      <mat-option *ngFor="let season of (seasonList | async)" [value]="season.season">
+        {{ season.season }}
       </mat-option>
     </mat-select>
   </div>

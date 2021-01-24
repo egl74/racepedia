@@ -1,5 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { RaceModel } from '../models/race.model';
 import { SeasonService } from '../services/season.service';
 
@@ -9,8 +10,14 @@ import { SeasonService } from '../services/season.service';
  * (including sorting, pagination, and filtering).
  */
 export class SeasonsDataSource extends DataSource<RaceModel> {
-  constructor(private readonly seasonService: SeasonService) {
+  seasonPicked: Observable<string>;
+
+  constructor(
+    private readonly seasonService: SeasonService,
+    seasonPicked: Observable<string>
+  ) {
     super();
+    this.seasonPicked = seasonPicked;
   }
 
   /**
@@ -19,7 +26,10 @@ export class SeasonsDataSource extends DataSource<RaceModel> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<RaceModel[]> {
-    return this.seasonService.getCurrentSeason();
+    return this.seasonPicked.pipe(
+      switchMap((season) => this.seasonService.getSeason(season)),
+      map((season) => season.Races)
+    );
   }
 
   /**
