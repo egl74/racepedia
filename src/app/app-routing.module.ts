@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SeasonsComponent } from './seasons/seasons.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/season/current', pathMatch: 'full' },
   {
     path: 'season',
-    children: [{ path: ':season', component: SeasonsComponent }],
+    children: [
+      { path: ':season', component: SeasonsComponent },
+      { path: '**', component: PageNotFoundComponent },
+    ],
   },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

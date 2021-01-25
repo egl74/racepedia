@@ -1,13 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  Router,
-} from '@angular/router';
-import { iif, Observable } from 'rxjs';
-import { filter, map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { RaceModel } from '../models/race.model';
 import { SeasonModel } from '../models/season.model';
 import { SeasonService } from '../services/season.service';
@@ -41,10 +37,6 @@ export class SeasonsComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.table.dataSource = this.dataSource;
 
-    this.yearControl.valueChanges.subscribe((year) =>
-      this.router.navigate([`/season/${year}`])
-    );
-
     this.seasonList
       .pipe(
         switchMap(() =>
@@ -59,8 +51,13 @@ export class SeasonsComponent implements AfterViewInit {
         switchMap(() =>
           this.seasonService.getCurrentSeason().pipe(
             tap((currentSeason) => {
-              this.yearControl.setValue(currentSeason, { emitEvent: false });
+              this.yearControl.setValue(currentSeason);
             })
+          )
+        ),
+        switchMap(() =>
+          this.yearControl.valueChanges.pipe(
+            tap((year) => this.router.navigate([`/season/${year}`]))
           )
         )
       )

@@ -18,13 +18,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     SeasonsComponent,
-    MainNavComponent
-  ],
+    MainNavComponent,
+      PageNotFoundComponent
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,
