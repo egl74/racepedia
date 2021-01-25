@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 import { RaceModel } from '../models/race.model';
 import { SeasonModel } from '../models/season.model';
 import { SeasonService } from '../services/season.service';
@@ -40,7 +40,10 @@ export class SeasonsComponent implements AfterViewInit {
     this.seasonList
       .pipe(
         switchMap(() =>
-          this.route.params.pipe(map((params) => params['season']))
+          this.route.params.pipe(
+            map((params) => params['season']),
+            take(1)
+          )
         ),
         tap((season) => {
           if (season !== 'current') {
@@ -54,13 +57,12 @@ export class SeasonsComponent implements AfterViewInit {
               this.yearControl.setValue(currentSeason);
             })
           )
-        ),
-        switchMap(() =>
-          this.yearControl.valueChanges.pipe(
-            tap((year) => this.router.navigate([`/season/${year}`]))
-          )
         )
       )
+      .subscribe();
+
+    this.yearControl.valueChanges
+      .pipe(tap((year) => this.router.navigate([`/season/${year}`])))
       .subscribe();
   }
 }
