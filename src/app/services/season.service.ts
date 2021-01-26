@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { concatMap, map, shareReplay } from 'rxjs/operators';
+import { concatMap, map, shareReplay, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { RaceModel } from '../models/race.model';
 import { SeasonModel } from '../models/season.model';
+import { DriverStandingsItem } from '../models/driver-standings-item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +41,28 @@ export class SeasonService {
     return this.httpClient
       .get(`${this.apiUrl}/${season}.json`)
       .pipe(map((result: any) => result.MRData.RaceTable));
+  }
+
+  public getDriverStandings(season: string): Observable<DriverStandingsItem[]> {
+    return this.httpClient
+      .get(`${this.apiUrl}/${season}/driverstandings.json`)
+      .pipe(
+        map(
+          (result: any) =>
+            result.MRData.StandingsTable.StandingsLists[0].DriverStandings
+        ),
+        map((standings: any[]) =>
+          standings.map(
+            (item) =>
+              new DriverStandingsItem({
+                position: item.position,
+                driverCode: item.Driver.code,
+                driverId: item.Driver.driverId,
+                team: item.Constructors[0]?.name,
+                points: item.points,
+              })
+          )
+        )
+      );
   }
 }

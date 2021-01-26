@@ -4,15 +4,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-import { SeasonsComponent } from './seasons.component';
+import { SeasonRoundTableComponent } from './season-round-table.component';
 
 describe('SeasonsComponent', () => {
-  let component: SeasonsComponent;
-  let fixture: ComponentFixture<SeasonsComponent>;
+  let component: SeasonRoundTableComponent;
+  let fixture: ComponentFixture<SeasonRoundTableComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SeasonsComponent ],
+      declarations: [ SeasonRoundTableComponent ],
       imports: [
         NoopAnimationsModule,
         MatPaginatorModule,
@@ -23,7 +23,7 @@ describe('SeasonsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SeasonsComponent);
+    fixture = TestBed.createComponent(SeasonRoundTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

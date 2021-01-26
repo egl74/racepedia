@@ -1,15 +1,15 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { RaceModel } from '../models/race.model';
-import { SeasonService } from '../services/season.service';
+import { map, switchMap } from 'rxjs/operators';
+import { RaceModel } from '../../models/race.model';
+import { SeasonService } from '../../services/season.service';
 
 /**
  * Data source for the Seasons view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class SeasonsDataSource extends DataSource<RaceModel> {
+export class SeasonRoundTableDataSource extends DataSource<RaceModel> {
   seasonPicked: Observable<string>;
 
   constructor(

@@ -5,10 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SeasonsComponent } from './seasons/seasons.component';
+import { SeasonRoundTableComponent } from './season/season-round-table/season-round-table.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,14 +18,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { StandingsComponent } from './season/standings/standings.component';
+import { SeasonComponent } from './season/season/season.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
-    SeasonsComponent,
+    SeasonRoundTableComponent,
     MainNavComponent,
-      PageNotFoundComponent
-   ],
+    PageNotFoundComponent,
+    StandingsComponent,
+    SeasonComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -34,17 +37,16 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+    MatGridListModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
