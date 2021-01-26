@@ -22,7 +22,6 @@ export class SeasonRoundTableComponent implements AfterViewInit {
     private readonly router: Router,
     private readonly route: ActivatedRoute
   ) {
-    console.log(this.route.snapshot);
     this.dataSource = new SeasonRoundTableDataSource(
       this.seasonService,
       this.route.parent ? this.route.parent.params.pipe(

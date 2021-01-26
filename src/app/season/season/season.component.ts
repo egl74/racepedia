@@ -37,14 +37,15 @@ export class SeasonComponent implements OnInit {
         switchMap(() =>
           this.seasonService.getCurrentSeason().pipe(
             tap((currentSeason) => {
-              this.yearControl.setValue(currentSeason);
+              this.yearControl.setValue(currentSeason, { emitEvent: false });
             })
           )
-        ),
-        switchMap(() => this.yearControl.valueChanges.pipe(
-          tap((year) => this.router.navigate([`/season/${year}`]))
-        ))
+        )
       )
+      .subscribe();
+
+    this.yearControl.valueChanges
+      .pipe(tap((year) => this.router.navigate([`/season/${year}`])))
       .subscribe();
   }
 }
