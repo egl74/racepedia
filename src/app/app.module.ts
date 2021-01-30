@@ -21,7 +21,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { StandingsComponent } from './season/standings/standings.component';
 import { SeasonService } from './services/season.service';
 import { RoundService } from './services/round.service';
-import { SessionResultsTableComponent } from './round/session-results-table/session-results-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RaceResultsComponent } from './round/race-results.component';

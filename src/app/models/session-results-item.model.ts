@@ -1,5 +1,5 @@
 export class SessionResultsItem {
-  position: number;
+  position: string;
   driverName: string;
   driverNationality: string;
   constructorName: string;
