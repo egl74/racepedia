@@ -10,10 +10,10 @@ const { flag } = require('country-emoji');
   templateUrl: './session-results-table.component.html',
   styleUrls: ['./session-results-table.component.scss'],
 })
-export abstract class SessionResultsTableComponent {
+export class SessionResultsTableComponent {
   @ViewChild(MatTable) table: MatTable<SessionResultsItem>;
   dataSource: SessionResultsTableDataSource;
-  protected abstract data: Observable<SessionResultsItem[]>;
+  protected data: Observable<SessionResultsItem[]>;
   flag = flag;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */

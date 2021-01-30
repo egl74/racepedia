@@ -24,6 +24,7 @@ import { RoundService } from './services/round.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RaceResultsComponent } from './round/race-results.component';
+import { SessionResultsTableComponent } from './round/session-results-table/session-results-table.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RaceResultsComponent } from './round/race-results.component';
     MainNavComponent,
     PageNotFoundComponent,
     StandingsComponent,
+    SessionResultsTableComponent,
     RaceResultsComponent,
   ],
   imports: [
