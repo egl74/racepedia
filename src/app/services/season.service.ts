@@ -1,15 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { concatMap, map, shareReplay, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { RaceModel } from '../models/race.model';
+import { environment } from 'src/environments/environment';
 import { SeasonModel } from '../models/season.model';
 import { DriverStandingsItem } from '../models/driver-standings-item.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class SeasonService {
   private apiUrl = environment.ergastApiUrl;
 

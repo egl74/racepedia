@@ -1,13 +1,31 @@
+<div class="title">
+  <h1>Season</h1>
+  <div class="auto-width">
+    <mat-select [formControl]="yearControl" class="year-picker">
+      <mat-option
+        *ngFor="let season of seasonList | async"
+        [value]="season.season"
+      >
+        {{ season.season }}
+      </mat-option>
+    </mat-select>
+  </div>
+</div>
+
 <div class="mat-elevation-z8 list-table">
   <table mat-table class="full-width-table">
     <ng-container matColumnDef="round">
       <th mat-header-cell *matHeaderCellDef mat-header>Round #</th>
-      <td mat-cell *matCellDef="let row">{{ row.round }}</td>
+      <td class="clickable" mat-cell *matCellDef="let row">{{ row.round }}</td>
     </ng-container>
 
     <ng-container matColumnDef="race">
       <th mat-header-cell *matHeaderCellDef mat-header>Event Name</th>
-      <td mat-cell *matCellDef="let row"><span class="flag">{{flag(row.Circuit.Location.country)}}</span> {{ row.raceName }}</td>
+
+      <td class="clickable" mat-cell *matCellDef="let row">
+        <span class="flag">{{ flag(row.Circuit.Location.country) }}</span>
+        {{ row.raceName }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="circuit">
@@ -16,6 +34,6 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row [routerLink]="['round', row.round]" *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>

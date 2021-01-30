@@ -1,16 +1,13 @@
-.list-table {
-  width: 90%;
-  margin: 20px auto;
+.year-picker {
+  margin: 8px 12px;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
-
-.full-width-table {
-  width: 100%;
-}
-
-.flag {
-  font-size: 24px;
+:host ::ng-deep .auto-width {
+  .mat-form-field {
+    width: auto !important;
+  }
+  .mat-select-value {
+    max-width: 100%;
+    width: auto;
+  }
 }

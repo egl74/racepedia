@@ -19,7 +19,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StandingsComponent } from './season/standings/standings.component';
-import { SeasonComponent } from './season/season/season.component';
+import { SeasonService } from './services/season.service';
+import { RoundService } from './services/round.service';
+import { SessionResultsTableComponent } from './round/session-results-table/session-results-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { RaceResultsComponent } from './round/race-results.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,7 @@ import { SeasonComponent } from './season/season/season.component';
     MainNavComponent,
     PageNotFoundComponent,
     StandingsComponent,
-    SeasonComponent
+    RaceResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +50,10 @@ import { SeasonComponent } from './season/season/season.component';
     MatIconModule,
     MatListModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
-  providers: [],
+  providers: [SeasonService, RoundService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
