@@ -23,8 +23,7 @@ import { SeasonService } from './services/season.service';
 import { RoundService } from './services/round.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { RaceResultsComponent } from './round/race-results.component';
-import { SessionResultsTableComponent } from './round/session-results-table/session-results-table.component';
+import { RaceResultsComponent } from './round/race-results-component/race-results-component.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { SessionResultsTableComponent } from './round/session-results-table/sess
     MainNavComponent,
     PageNotFoundComponent,
     StandingsComponent,
-    SessionResultsTableComponent,
     RaceResultsComponent,
   ],
   imports: [

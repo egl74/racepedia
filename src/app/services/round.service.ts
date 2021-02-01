@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { SessionResultsItem } from '../models/session-results-item.model';
+import { RaceResultsItem } from '../models/session-results-item.model';
 
 @Injectable()
 export class RoundService {
@@ -14,7 +14,7 @@ export class RoundService {
     season: string,
     round: string,
     limit: number = 30
-  ): Observable<SessionResultsItem[]> {
+  ): Observable<RaceResultsItem[]> {
     return this.httpClient
       .get(`${this.apiUrl}/${season}/${round}/results.json?limit=${limit}`)
       .pipe(
@@ -22,7 +22,7 @@ export class RoundService {
         map((results: any[]) =>
           results.map(
             (item) =>
-              new SessionResultsItem({
+              new RaceResultsItem({
                 position: item.position,
                 driverName: `${item.Driver.givenName} ${item.Driver.familyName}`,
                 driverNationality: item.Driver.nationality,

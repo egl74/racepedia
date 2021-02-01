@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RaceResultsComponent } from './round/race-results.component';
+import { RaceResultsComponent } from './round/race-results-component/race-results-component.component';
 import { SeasonRoundTableComponent } from './season/season-round-table/season-round-table.component';
 
 const routes: Routes = [
