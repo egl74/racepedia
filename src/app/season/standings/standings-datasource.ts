@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DriverStandingsItem } from '../../models/driver-standings-item.model';
-import { SeasonService } from 'src/app/services/season.service';
+import { SeasonService } from 'src/app/season/services/season.service';
 
 // TODO: Replace this with your own data model type
 export interface StandingsItem {

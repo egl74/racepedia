@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
-import { RaceResultsItem } from 'src/app/models/session-results-item.model';
+import { RaceResultsItem } from 'src/app/models/race-results-item.model';
 
 /**
  * Data source for the SessionResultsTable view. This class should

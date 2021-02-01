@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { RaceModel } from '../../models/race.model';
-import { SeasonService } from '../../services/season.service';
+import { SeasonService } from '../services/season.service';
 import { SeasonRoundTableDataSource } from './season-round-table-datasource';
 const { flag } = require('country-emoji');
 

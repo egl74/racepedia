@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { Observable } from 'rxjs';
-import { SeasonService } from 'src/app/services/season.service';
+import { SeasonService } from 'src/app/season/services/season.service';
 import { DriverStandingsItem } from '../../models/driver-standings-item.model';
 import { StandingsDataSource } from './standings-datasource';
 

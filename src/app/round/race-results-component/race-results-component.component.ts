@@ -3,8 +3,8 @@ import { MatTable } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { mergeMap, shareReplay } from 'rxjs/operators';
-import { RaceResultsItem } from 'src/app/models/session-results-item.model';
-import { RoundService } from 'src/app/services/round.service';
+import { RaceResultsItem } from 'src/app/models/race-results-item.model';
+import { RoundService } from 'src/app/round/services/round.service';
 import { RaceResultsTableDataSource } from './race-results-table-datasource';
 const { flag } = require('country-emoji');
 

@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { RaceModel } from '../../models/race.model';
-import { SeasonService } from '../../services/season.service';
+import { SeasonService } from '../services/season.service';
 
 /**
  * Data source for the Seasons view. This class should

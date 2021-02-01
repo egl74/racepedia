@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { RaceResultsItem } from '../models/session-results-item.model';
+import { RaceResultsItem } from '../../models/race-results-item.model';
 
 @Injectable()
 export class RoundService {
