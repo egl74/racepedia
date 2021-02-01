@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { SeasonService } from './services/season.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

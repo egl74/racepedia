@@ -1,10 +1,8 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { map, switchMap } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { DriverStandingsItem } from '../../models/driver-standings-item.model';
-import { SeasonService } from '../../services/season.service';
+import { SeasonService } from 'src/app/services/season.service';
 
 // TODO: Replace this with your own data model type
 export interface StandingsItem {

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { mergeMap, shareReplay } from 'rxjs/operators';
 import { RaceResultsItem } from 'src/app/models/session-results-item.model';
 import { RoundService } from 'src/app/services/round.service';
