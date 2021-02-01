@@ -1,42 +1,63 @@
-<div class="mat-elevation-z8 list-table">
-  <table mat-table class="full-width-table">
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-header>Position</th>
-      <td mat-cell *matCellDef="let row">
-        <ng-container
-          *ngTemplateOutlet="medalized; context: { position: row.position }"
-        ></ng-container>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="driverName">
-      <th mat-header-cell *matHeaderCellDef mat-header>Driver</th>
-      <td mat-cell *matCellDef="let row">
-        <span class="flag">{{ flag(row.driverNationality) }}</span>
-        {{ row.driverName }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="constructorName">
-      <th mat-header-cell *matHeaderCellDef mat-header>Team</th>
-      <td mat-cell *matCellDef="let row">{{ row.constructorName }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="result">
-      <th mat-header-cell *matHeaderCellDef mat-header>Result</th>
-      <td mat-cell *matCellDef="let row">{{ row.result }}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+<div *ngIf="race$ | async as race" class="container race-title">
+  {{ race.season }} {{ race.raceName }} <span class="spacer"></span>
+  {{ race.Circuit.circuitName }}, {{ race.Circuit.Location.locality }}
+  {{ flag(race.Circuit.Location.country) }} <span class="spacer"></span>
+  {{ race.date | date }}
 </div>
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <p>This is the primary content of the panel.</p>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    class="container"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <app-banner [bannerInfo]="bannerInfo"></app-banner>
+    </mat-expansion-panel-header>
+    <div class="mat-elevation-z8">
+      <table mat-table class="full-width-table">
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef mat-header>Position</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container
+              *ngTemplateOutlet="medalized; context: { position: row.position }"
+            ></ng-container>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="driverName">
+          <th mat-header-cell *matHeaderCellDef mat-header>Driver</th>
+          <td mat-cell *matCellDef="let row">
+            <span class="flag">{{ flag(row.driverNationality) }}</span>
+            {{ row.driverName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="constructorName">
+          <th mat-header-cell *matHeaderCellDef mat-header>Team</th>
+          <td mat-cell *matCellDef="let row">{{ row.constructorName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="result">
+          <th mat-header-cell *matHeaderCellDef mat-header>Result</th>
+          <td mat-cell *matCellDef="let row">{{ row.result }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
 
 <ng-template #medalized let-position="position">
   <ng-container [ngSwitch]="position">
     <span class="medal" *ngSwitchCase="1">🥇</span>
     <span class="medal" *ngSwitchCase="2">🥈</span>
     <span class="medal" *ngSwitchCase="3">🥉</span>
-    <ng-container class="medal" *ngSwitchDefault>{{position}}</ng-container>
+    <ng-container class="medal" *ngSwitchDefault>{{ position }}</ng-container>
   </ng-container>
 </ng-template>

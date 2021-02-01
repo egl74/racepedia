@@ -5,7 +5,7 @@ export class RaceResultsItem {
   constructorName: string;
   result: string;
 
-  public constructor(init?:Partial<RaceResultsItem>) {
+  public constructor(init?: Partial<RaceResultsItem>) {
     Object.assign(this, init);
-}
+  }
 }

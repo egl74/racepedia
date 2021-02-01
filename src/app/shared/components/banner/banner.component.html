@@ -1,0 +1,25 @@
+<div *ngIf="bannerInfo | async as info" class="banner">
+  <h1>
+    🥇
+    <ng-container
+      *ngTemplateOutlet="bannerItem; context: { item: info[0] }"
+    ></ng-container>
+  </h1>
+  <h2>
+    🥈
+    <ng-container
+      *ngTemplateOutlet="bannerItem; context: { item: info[1] }"
+    ></ng-container>
+  </h2>
+  <h2>
+    🥉
+    <ng-container
+      *ngTemplateOutlet="bannerItem; context: { item: info[2] }"
+    ></ng-container>
+  </h2>
+  <ng-content></ng-content>
+</div>
+
+<ng-template #bannerItem let-item="item">
+  {{ item.name }} {{ item.result }}
+</ng-template>

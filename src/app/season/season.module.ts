@@ -3,8 +3,6 @@ import { SeasonService } from './services/season.service';
 import { SeasonRoundTableComponent } from './season-round-table/season-round-table.component';
 import { StandingsComponent } from './standings/standings.component';
 import { MatTableModule } from '@angular/material/table';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
@@ -18,8 +16,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     MatTableModule,
     MatGridListModule,
-    LayoutModule,
-    MatButtonModule,
     MatSelectModule,
   ],
   declarations: [StandingsComponent, SeasonRoundTableComponent],
