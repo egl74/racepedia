@@ -9,9 +9,10 @@ import { SeasonModule } from './season/season.module';
 import { RoundModule } from './round/round.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -20,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     SeasonModule,
     RoundModule,
-    SharedModule
+    SharedModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,15 @@
+@import "/src/variables";
+
+.spacer {
+  flex: 1 1 auto;
+  padding: 0 5px;
+}
+.race-title {
+  display: flex;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .race-title {
+    flex-direction: column;
+  }
+}

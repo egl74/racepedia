@@ -1,0 +1,12 @@
+<div *ngIf="race$ | async as race" class="race-title">
+  <p>{{ race.season }} {{ race.raceName }}</p>
+  <span class="spacer"></span>
+  <p>
+    {{ race.Circuit.circuitName }}, {{ race.Circuit.Location.locality }}
+    {{ flag(race.Circuit.Location.country) }}
+  </p>
+  <span class="spacer"></span>
+  <p>
+    {{ race.date | date }}
+  </p>
+</div>

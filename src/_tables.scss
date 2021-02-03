@@ -1,8 +1,3 @@
-.container {
-  width: 90%;
-  margin: 20px auto !important;
-}
-
 .full-width-table {
   width: 100%;
 }
@@ -15,6 +10,10 @@
 td.mat-cell,
 th.mat-header-cell {
   padding: 0 5px !important;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: #373737;
 }
 
 .clickable {

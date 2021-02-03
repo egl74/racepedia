@@ -1,6 +1,26 @@
+@import "/src/variables";
+
 .banner {
-  border: 1px;
+  border: 1px solid #eee;
   padding-top: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.results {
+  display: flex;
+}
+
+.podium {
+  width: 100%;
+}
+
+.full-results-btn {
+  justify-content: right;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .results {
+    flex-direction: column;
+  }
 }

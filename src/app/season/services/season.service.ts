@@ -28,7 +28,7 @@ export class SeasonService {
   }
 
   public getCurrentSeason(): Observable<string> {
-    return this.httpClient.get(`${this.apiUrl}/current.json?limit=1`).pipe(
+    return this.httpClient.get(`${this.apiUrl}/current.json?limit=0`).pipe(
       map((result: any) => result.MRData.RaceTable.season),
       shareReplay(1)
     );

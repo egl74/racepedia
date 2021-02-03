@@ -6,9 +6,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item routerLink="/season">Current Season</a>
+      <a mat-list-item routerLink="/season/current/teams">Teams</a>
+      <a mat-list-item routerLink="/calendar">Calendar</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,9 +24,9 @@
       <span class="link" [routerLink]="['/']">🏁 Racepedia</span>
       <span class="spacer"></span>
       <div *ngIf="!(isHandset$ | async)">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <a routerLink="/season">Current Season</a>
+        <a routerLink="/season/current/teams">Teams</a>
+        <a routerLink="/calendar">Calendar</a>
       </div>
     </mat-toolbar>
     <ng-content></ng-content>
