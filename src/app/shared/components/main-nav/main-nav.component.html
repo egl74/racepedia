@@ -6,9 +6,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/season">Current Season</a>
-      <a mat-list-item routerLink="/season/current/teams">Teams</a>
-      <a mat-list-item routerLink="/calendar">Calendar</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/season">Current Season</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/season/current/teams">Teams</a>
+      <a mat-list-item (click)="drawer.toggle()" routerLink="/calendar">Calendar</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
