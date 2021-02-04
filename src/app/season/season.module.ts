@@ -8,6 +8,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SeasonSelectorComponent } from './season-selector/season-selector.component';
+import { TeamListComponent } from './team-list/team-list.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -17,8 +20,14 @@ import { RouterModule } from '@angular/router';
     MatTableModule,
     MatGridListModule,
     MatSelectModule,
+    MatCardModule,
   ],
-  declarations: [StandingsComponent, SeasonRoundTableComponent],
+  declarations: [
+    StandingsComponent,
+    SeasonRoundTableComponent,
+    SeasonSelectorComponent,
+    TeamListComponent,
+  ],
   providers: [SeasonService],
 })
 export class SeasonModule {}

@@ -1,16 +1,4 @@
-<div class="title">
-  <h1>Season</h1>
-  <div class="auto-width">
-    <mat-select [formControl]="yearControl" class="year-picker">
-      <mat-option
-        *ngFor="let season of seasonList | async"
-        [value]="season.season"
-      >
-        {{ season.season }}
-      </mat-option>
-    </mat-select>
-  </div>
-</div>
+<app-season-selector (yearControlChange)="switchSeason($event)"></app-season-selector>
 
 <div class="mat-elevation-z8 container">
   <table mat-table class="full-width-table">

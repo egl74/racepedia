@@ -23,7 +23,17 @@ import { RaceTitleComponent } from './components/race-title/race-title.component
     MatToolbarModule,
     MatIconModule,
   ],
-  declarations: [MainNavComponent, PageNotFoundComponent, BannerComponent, RaceTitleComponent],
-  exports: [MainNavComponent, PageNotFoundComponent, BannerComponent, RaceTitleComponent],
+  declarations: [
+    MainNavComponent,
+    PageNotFoundComponent,
+    BannerComponent,
+    RaceTitleComponent,
+  ],
+  exports: [
+    MainNavComponent,
+    PageNotFoundComponent,
+    BannerComponent,
+    RaceTitleComponent,
+  ],
 })
 export class SharedModule {}
