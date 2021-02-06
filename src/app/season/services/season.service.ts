@@ -84,7 +84,7 @@ export class SeasonService {
   ): Observable<number> {
     return this.httpClient
       .get(
-        `http://ergast.com/api/f1/constructors/${teamId}/results/${position}.json?limit=0`
+        `${this.apiUrl}/constructors/${teamId}/results/${position}.json?limit=0`
       )
       .pipe(map((result: any) => parseInt(result.MRData.total)));
   }
