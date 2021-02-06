@@ -1,0 +1,12 @@
+<app-season-selector (yearControlChange)="switchSeason($event)"></app-season-selector>
+
+<div class="container card-list">
+  <mat-card *ngFor="let team of teams$ | async" class="card">
+    <mat-card-title>{{ team.name }} {{flag(team.country)}}</mat-card-title>
+    <div *ngIf="team.wins != null" class="card-stats">
+      <mat-card-content>ALL TIME STATS</mat-card-content>
+      <mat-card-content>Wins {{ team.wins }}</mat-card-content>
+      <mat-card-content *ngIf="team.podiums != null" class="card-stats">Podiums {{ team.podiums }}</mat-card-content>
+    </div>
+  </mat-card>
+</div>

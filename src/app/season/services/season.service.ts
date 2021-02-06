@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SeasonModel } from '../../models/season.model';
 import { DriverStandingsItem } from '../../models/driver-standings-item.model';
+import { TeamModel } from 'src/app/models/team.model';
 
 @Injectable()
 export class SeasonService {
@@ -61,5 +62,30 @@ export class SeasonService {
           )
         )
       );
+  }
+
+  public getTeams(season: string): Observable<TeamModel[]> {
+    return this.httpClient
+      .get(`${this.apiUrl}/${season}/constructors.json`)
+      .pipe(
+        map((result: any) => result.MRData.ConstructorTable.Constructors),
+        map((teams: any[]) =>
+          teams.map(
+            (item) =>
+              new TeamModel({ name: item.name, country: item.nationality, constructorId: item.constructorId })
+          )
+        )
+      );
+  }
+
+  public getAllTimeTeamFinishes(
+    teamId: string,
+    position: number
+  ): Observable<number> {
+    return this.httpClient
+      .get(
+        `http://ergast.com/api/f1/constructors/${teamId}/results/${position}.json?limit=0`
+      )
+      .pipe(map((result: any) => parseInt(result.MRData.total)));
   }
 }

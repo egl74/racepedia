@@ -1,0 +1,23 @@
+.card {
+  width: 300px;
+  height: 300px;
+  margin: 1em auto;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-stats {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
