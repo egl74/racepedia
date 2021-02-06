@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { SeasonModel } from '../../models/season.model';
 import { DriverStandingsItem } from '../../models/driver-standings-item.model';
 import { TeamModel } from 'src/app/models/team.model';
+import { DriverModel } from 'src/app/models/driver.model';
 
 @Injectable()
 export class SeasonService {
@@ -72,7 +73,11 @@ export class SeasonService {
         map((teams: any[]) =>
           teams.map(
             (item) =>
-              new TeamModel({ name: item.name, country: item.nationality, constructorId: item.constructorId })
+              new TeamModel({
+                name: item.name,
+                country: item.nationality,
+                constructorId: item.constructorId,
+              })
           )
         )
       );
@@ -87,5 +92,14 @@ export class SeasonService {
         `${this.apiUrl}/constructors/${teamId}/results/${position}.json?limit=0`
       )
       .pipe(map((result: any) => parseInt(result.MRData.total)));
+  }
+
+  public getTeamRoster(
+    teamId: string,
+    season: string
+  ): Observable<DriverModel[]> {
+    return this.httpClient
+      .get(`${this.apiUrl}/${season}/constructors/${teamId}/drivers.json`)
+      .pipe(map((result: any) => result.MRData.DriverTable.Drivers));
   }
 }

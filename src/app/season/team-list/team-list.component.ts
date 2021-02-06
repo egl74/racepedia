@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, combineLatest, zip } from 'rxjs';
+import { BehaviorSubject, combineLatest, of, zip } from 'rxjs';
 import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { TeamModel } from 'src/app/models/team.model';
+import { DriverStatsModel, TeamModel } from 'src/app/models/team.model';
 import { SeasonService } from '../services/season.service';
 const { flag } = require('country-emoji');
 
@@ -63,7 +63,38 @@ export class TeamListComponent implements OnInit {
                 )
               )
             )
-          )
+          ),
+          tap((teams) => this.teams$.next(teams)),
+          mergeMap((teams) =>
+            combineLatest(
+              teams.map((team) =>
+                this.route.parent
+                  ? this.route.parent.params.pipe(
+                      map((params) => params['season']),
+                      switchMap((season: any) =>
+                        this.seasonService
+                          .getTeamRoster(team.constructorId, season)
+                          .pipe(
+                            map((drivers) => {
+                              team.driverRoster = drivers.map(
+                                (driver) =>
+                                  new DriverStatsModel({
+                                    name: `${driver.givenName} ${driver.familyName}`,
+                                    country: driver.nationality,
+                                    permanentNumber: driver.permanentNumber,
+                                    driverId: driver.driverId,
+                                  })
+                              );
+                              return team;
+                            })
+                          )
+                      )
+                    )
+                  : of(new TeamModel({}))
+              )
+            )
+          ),
+          tap((teams) => this.teams$.next(teams))
         )
         .subscribe();
   }

@@ -7,6 +7,12 @@ export class StatsModel {
 
 export class DriverStatsModel extends StatsModel {
   driverId: string;
+  permanentNumber: number;
+
+  public constructor(init?: Partial<DriverStatsModel>) {
+    super();
+    Object.assign(this, init);
+  }
 }
 
 export class TeamModel extends StatsModel {

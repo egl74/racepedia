@@ -1,7 +1,18 @@
 .card {
   width: 300px;
   height: 300px;
-  margin: 1em auto;
+  margin: 0.5em auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-card-title {
+  margin-bottom: 1em;
+}
+
+.mat-card-content {
+  overflow-y: auto;
+  max-height: 300px;
 }
 
 .card-list {
@@ -10,7 +21,12 @@
 }
 
 .card-stats {
-  animation: fadeIn 1s;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em auto;
+  > span {
+    animation: fadeIn 1s;
+  }
 }
 
 @keyframes fadeIn {
