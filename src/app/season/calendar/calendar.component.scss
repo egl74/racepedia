@@ -1,0 +1,14 @@
+@import "/src/variables";
+
+.mat-calendar-controls {
+  margin-top: 1em !important;
+}
+
+::ng-deep {
+  mat-month-view
+    *
+    > .mat-calendar-body-cell:not(.mat-calendar-body-disabled)
+    > .mat-calendar-body-cell-content {
+    background-color: $primary-color !important;
+  }
+}

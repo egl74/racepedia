@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
-import { map, mergeMap, shareReplay } from 'rxjs/operators';
+import { catchError, map, mergeMap, shareReplay } from 'rxjs/operators';
 import { RaceResultsItem } from 'src/app/models/race-results-item.model';
 import { RoundService } from 'src/app/round/services/round.service';
 import { RaceResultsTableDataSource } from './race-results-table-datasource';
@@ -33,7 +33,10 @@ export class RaceResultsComponent implements OnInit, AfterViewInit {
       shareReplay(1)
     ) || of();
 
-  private data = this.race$.pipe(map((race) => race.results));
+  private data = this.race$.pipe(
+    map((race) => race.results),
+    catchError(() => of([]))
+  );
 
   constructor(
     readonly roundService: RoundService,

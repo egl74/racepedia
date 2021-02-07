@@ -1,7 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { concatMap, map, mergeMap, shareReplay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import {
+  catchError,
+  concatMap,
+  map,
+  mergeMap,
+  shareReplay,
+} from 'rxjs/operators';
 import { RaceModel } from 'src/app/models/race.model';
 import { environment } from 'src/environments/environment';
 import { RaceResultsItem } from '../../models/race-results-item.model';
@@ -48,6 +54,7 @@ export class RoundService {
             })
           )
         ),
+        catchError(() => of(new RaceModel())),
         shareReplay(1)
       );
   }

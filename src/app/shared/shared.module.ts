@@ -34,6 +34,6 @@ import { RaceTitleComponent } from './components/race-title/race-title.component
     PageNotFoundComponent,
     BannerComponent,
     RaceTitleComponent,
-  ],
+  ]
 })
 export class SharedModule {}
