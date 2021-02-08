@@ -46,6 +46,7 @@ export class CalendarComponent implements AfterViewInit {
     this.router.navigate([date.getFullYear(), date.getMonth() + 1], {
       relativeTo: this.route.parent,
     });
+    this.onMonthChange(date);
   }
 
   viewChanged(view) {
@@ -76,12 +77,12 @@ export class CalendarComponent implements AfterViewInit {
 
   private onMonthChange(date: Date) {
     this.calendar.activeDate = date;
-    this.cdr.detectChanges();
     if (
       this.calendar.currentView !== 'month' ||
       date.getFullYear() !== this.currentYear
     ) {
       this.dateFilter = () => false;
+      this.cdr.detectChanges();
       this.currentYear = date.getFullYear();
       this.seasonService
         .getSeason(date.getFullYear().toString())
