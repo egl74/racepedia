@@ -38,7 +38,13 @@ const routes: Routes = [
       { path: '**', component: PageNotFoundComponent },
     ],
   },
-  { path: 'calendar', component: CalendarComponent },
+  {
+    path: 'calendar',
+    children: [
+      { path: '', component: CalendarComponent },
+      { path: ':year/:month', component: CalendarComponent },
+    ],
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -1,6 +1,12 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ViewChild,
+} from '@angular/core';
 import { MatCalendar } from '@angular/material/datepicker';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { RaceModel } from 'src/app/models/race.model';
 import { SeasonService } from '../services/season.service';
@@ -10,6 +16,7 @@ import { CustomCalendarHeader } from './custom-calendar-header/custom-calendar-h
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarComponent implements AfterViewInit {
   private currentYear: number;
@@ -20,29 +27,25 @@ export class CalendarComponent implements AfterViewInit {
 
   constructor(
     private readonly seasonService: SeasonService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly cdr: ChangeDetectorRef
   ) {}
 
   ngAfterViewInit() {
-    this.onMonthChange(new Date());
+    this.route.params.subscribe((params) =>
+      this.onMonthChange(
+        params['year']
+          ? new Date(params['year'], params['month'] - 1)
+          : new Date()
+      )
+    );
   }
 
-  onMonthChange(date: Date) {
-    if (
-      this.calendar.currentView !== 'month' ||
-      date.getFullYear() !== this.currentYear
-    ) {
-      this.dateFilter = () => false;
-      this.currentYear = date.getFullYear();
-      this.seasonService
-        .getSeason(date.getFullYear().toString())
-        .pipe(
-          tap((season) => (this.races = season.Races)),
-          map((season) => season.Races.map((race) => race.date)),
-          tap((raceDates) => (this.dateFilter = this.getFateFilter(raceDates)))
-        )
-        .subscribe();
-    }
+  onMonthChangeClick(date: Date) {
+    this.router.navigate([date.getFullYear(), date.getMonth() + 1], {
+      relativeTo: this.route.parent,
+    });
   }
 
   viewChanged(view) {
@@ -69,5 +72,26 @@ export class CalendarComponent implements AfterViewInit {
 
   private getFateFilter(dates: string[]): (date: Date) => boolean {
     return (date: Date) => dates && dates.includes(this.toISODate(date));
+  }
+
+  private onMonthChange(date: Date) {
+    this.calendar.activeDate = date;
+    this.cdr.detectChanges();
+    if (
+      this.calendar.currentView !== 'month' ||
+      date.getFullYear() !== this.currentYear
+    ) {
+      this.dateFilter = () => false;
+      this.currentYear = date.getFullYear();
+      this.seasonService
+        .getSeason(date.getFullYear().toString())
+        .pipe(
+          tap((season) => (this.races = season.Races)),
+          map((season) => season.Races.map((race) => race.date)),
+          tap((raceDates) => (this.dateFilter = this.getFateFilter(raceDates))),
+          tap(() => this.cdr.detectChanges())
+        )
+        .subscribe();
+    }
   }
 }
