@@ -10,7 +10,7 @@ import { BannerInfoItem } from '../shared/components/banner/banner-info-item.mod
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  raceResults = this.roundService.getRaceResults('current', 'last');
+  raceResults = this.roundService.getRaceResults('current', 'last', 3, false);
   bannerInfo$: Observable<BannerInfoItem[]> = this.raceResults.pipe(
     map((results) =>
       results.results.slice(0, 3).map(

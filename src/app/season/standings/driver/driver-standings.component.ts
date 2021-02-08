@@ -6,20 +6,19 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { Observable } from 'rxjs';
 import { SeasonService } from 'src/app/season/services/season.service';
-import { DriverStandingsItem } from '../../models/driver-standings-item.model';
-import { StandingsDataSource } from './standings-datasource';
+import { DriverStandingsItem } from '../../../models/driver-standings-item.model';
+import { DriverStandingsDataSource } from './driver-standings-datasource';
 
 @Component({
-  selector: 'app-standings',
-  templateUrl: './standings.component.html',
-  styleUrls: ['./standings.component.scss'],
+  selector: 'app-driver-standings',
+  templateUrl: './driver-standings.component.html',
+  styleUrls: ['./driver-standings.component.scss'],
 })
-export class StandingsComponent implements AfterViewInit, OnInit {
+export class DriverStandingsComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table: MatTable<DriverStandingsItem>;
-  @Input() seasonPicked: Observable<string>;
-  dataSource: StandingsDataSource;
+  @Input() season: string;
+  dataSource: DriverStandingsDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['position', 'driverCode', 'team', 'points'];
@@ -27,9 +26,9 @@ export class StandingsComponent implements AfterViewInit, OnInit {
   constructor(private readonly seasonService: SeasonService) {}
 
   ngOnInit() {
-    this.dataSource = new StandingsDataSource(
+    this.dataSource = new DriverStandingsDataSource(
       this.seasonService,
-      this.seasonPicked
+      this.season
     );
   }
 

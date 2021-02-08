@@ -4,7 +4,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-import { StandingsComponent } from './standings.component';
+import { StandingsComponent } from './driver-standings.component';
 
 describe('StandingsComponent', () => {
   let component: StandingsComponent;

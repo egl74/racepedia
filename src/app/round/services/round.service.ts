@@ -20,7 +20,8 @@ export class RoundService {
   public getRaceResults(
     season: string,
     round: string,
-    limit: number = 30
+    limit: number = 30,
+    loadPitStops: boolean = true
   ): Observable<RaceModel> {
     return this.httpClient
       .get(`${this.apiUrl}/${season}/${round}/results.json?limit=${limit}`)
@@ -45,14 +46,16 @@ export class RoundService {
           return race;
         }),
         mergeMap((race) =>
-          this.getPitStops(season, round).pipe(
-            map((pitStops) => {
-              race.results.forEach(
-                (item) => (item.stops = pitStops[item.driverId])
-              );
-              return race;
-            })
-          )
+          loadPitStops
+            ? this.getPitStops(season, round).pipe(
+                map((pitStops) => {
+                  race.results.forEach(
+                    (item) => (item.stops = pitStops[item.driverId])
+                  );
+                  return race;
+                })
+              )
+            : of(race)
         ),
         catchError(() => of(new RaceModel())),
         shareReplay(1)

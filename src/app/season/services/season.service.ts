@@ -7,6 +7,7 @@ import { SeasonModel } from '../../models/season.model';
 import { DriverStandingsItem } from '../../models/driver-standings-item.model';
 import { TeamModel } from 'src/app/models/team.model';
 import { DriverModel } from 'src/app/models/driver.model';
+import { ConstructorStandingsItem } from 'src/app/models/constructor-standings-item.model';
 
 @Injectable()
 export class SeasonService {
@@ -58,6 +59,30 @@ export class SeasonService {
                 driverCode: item.Driver.code,
                 driverId: item.Driver.driverId,
                 team: item.Constructors[0]?.name,
+                points: item.points,
+              })
+          )
+        )
+      );
+  }
+
+  public getConstructorStandings(
+    season: string
+  ): Observable<ConstructorStandingsItem[]> {
+    return this.httpClient
+      .get(`${this.apiUrl}/${season}/constructorStandings.json`)
+      .pipe(
+        map(
+          (result: any) =>
+            result.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
+        ),
+        map((standings: any[]) =>
+          standings.map(
+            (item) =>
+              new ConstructorStandingsItem({
+                position: item.position,
+                name: item.Constructor.name,
+                nationality: item.Constructor.nationality,
                 points: item.points,
               })
           )

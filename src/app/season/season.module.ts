@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SeasonService } from './services/season.service';
 import { SeasonRoundTableComponent } from './season-round-table/season-round-table.component';
-import { StandingsComponent } from './standings/standings.component';
+import { DriverStandingsComponent } from './standings/driver/driver-standings.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,6 +17,7 @@ import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { CustomDateAdapter } from './services/custom-data-adapter.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import { ConstructorStandingsComponent } from './standings/constructor/constructor-standings.component';
 
 @NgModule({
   imports: [
@@ -32,13 +33,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatNativeDateModule,
   ],
   declarations: [
-    StandingsComponent,
+    DriverStandingsComponent,
     SeasonRoundTableComponent,
     SeasonSelectorComponent,
     TeamListComponent,
     CustomCalendarHeader,
     CalendarComponent,
+    ConstructorStandingsComponent,
   ],
+  exports: [DriverStandingsComponent, ConstructorStandingsComponent],
   providers: [
     SeasonService,
     { provide: DateAdapter, useClass: CustomDateAdapter },
