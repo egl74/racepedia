@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 
+$breakpoint-handset: 599px;
 $breakpoint-tablet: 839px;
 $primary: mat-palette($mat-pink, 700, 500, 900);
 $accent:  mat-palette($mat-blue-grey, A200, A100, A400);

@@ -32,6 +32,7 @@ export class CalendarComponent implements AfterViewInit {
       this.calendar.currentView !== 'month' ||
       date.getFullYear() !== this.currentYear
     ) {
+      this.dateFilter = () => false;
       this.currentYear = date.getFullYear();
       this.seasonService
         .getSeason(date.getFullYear().toString())
