@@ -1,14 +1,16 @@
-<div class="container" [hidden]="!(bannerInfo$ | async)">
-  <h1>LAST RACE RESULTS</h1>
-  <app-race-title [race$]="raceResults"></app-race-title>
-  <app-banner [bannerInfo]="bannerInfo$">
-    <div class="fastest-lap" *ngIf="fastestLap$ | async as fastestLap">
-      <h2>
-        Fastest lap: {{ fastestLap.driverName }}
-        {{ fastestLap.fastestLapTime }}
-      </h2>
-    </div>
-  </app-banner>
+<div class="container">
+  <div [hidden]="!(bannerInfo$ | async)">
+    <h1>LAST RACE RESULTS</h1>
+    <app-race-title [race$]="raceResults"></app-race-title>
+    <app-banner [bannerInfo]="bannerInfo$">
+      <div class="fastest-lap" *ngIf="fastestLap$ | async as fastestLap">
+        <h2>
+          Fastest lap: {{ fastestLap.driverName }}
+          {{ fastestLap.fastestLapTime }}
+        </h2>
+      </div>
+    </app-banner>
+  </div>
   <div class="standings">
     <div>
       Drivers' Standings

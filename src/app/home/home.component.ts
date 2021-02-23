@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit {
   fastestLap$: Observable<any> = this.raceResults.pipe(
     map(
       (results) =>
-        [...results.results].sort((a, b) => a.fastestLapRank - b.fastestLapRank)[0]
+        [...results.results].sort(
+          (a, b) => a.fastestLapRank - b.fastestLapRank
+        )[0]
     )
   );
 

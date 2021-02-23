@@ -1,5 +1,5 @@
-<div *ngIf="bannerInfo | async as info" class="banner">
-  <div class="results">
+<div *ngIf="((bannerInfo | async)?.length && (bannerInfo | async)) as info" class="banner">
+  <div *ngIf="info.length" class="results">
     <div class="podium">
       <h1>
         🥇
